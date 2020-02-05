@@ -10,7 +10,7 @@ html {
     height: 100vh;
   }
   
-  a {
+  a, a:hover {
     color: #92badd;
     display:inline-block;
     text-decoration: none;
@@ -51,7 +51,7 @@ html {
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 15px 30px 0 rgba(0,0,0,0.3);
     text-align: center;
   }
   
@@ -63,8 +63,7 @@ html {
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
   }
-  
-  
+
   
   /* TABS */
   
@@ -114,6 +113,8 @@ html {
     -ms-transform: scale(0.95);
     transform: scale(0.95);
   }
+
+  
   
   input[type=text] {
     background-color: #f6f6f6;
@@ -175,7 +176,13 @@ html {
     color: #cccccc;
   }
   
-  
+  input[type=checkbox], label{
+    padding: 15px 32px;
+    display: inline-block;
+    margin: 5px;
+    width: 85%;
+  }
+
   
   /* ANIMATIONS */
   

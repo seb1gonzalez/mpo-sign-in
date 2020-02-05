@@ -6,3 +6,4 @@ function togglePassVisibility() {
       x.type = "password";
     }
   }
+
