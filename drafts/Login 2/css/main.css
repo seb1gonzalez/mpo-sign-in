@@ -174,7 +174,8 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #1a1813;  
+  background-image: url('images/ep_night.jpg') !important;
+  
 }
 
 .wrap-login100 {
@@ -203,7 +204,8 @@ iframe {
   display: block;
   font-family: Poppins-Bold;
   font-size: 30px;
-  color: #1a1813;
+  color: #1a1513;
+
   line-height: 1.2;
   text-align: center;
 }
@@ -372,10 +374,10 @@ iframe {
   width: 300%;
   height: 100%;
   background: #3f3f3f;
-  background: -webkit-linear-gradient(right, #434343, #bdc3c7, #434343, #bdc3c7);
-  background: -o-linear-gradient(right, #434343, #bdc3c7, #434343, #bdc3c7);
-  background: -moz-linear-gradient(right,#434343, #bdc3c7,#434343, #bdc3c7);
-  background: linear-gradient(right, #434343, #bdc3c7,#434343, #bdc3c7);
+  background: -webkit-linear-gradient(right, #00ACC1, #B2EBF2, #00ACC1, #B2EBF2);
+  background: -o-linear-gradient(right, #00ACC1, #B2EBF2, #00ACC1, #B2EBF2);
+  background: -moz-linear-gradient(right,#00ACC1, #B2EBF2,#00ACC1, #B2EBF2);
+  background: linear-gradient(right, #00ACC1, #B2EBF2,#00ACC1, #B2EBF2);
   top: 0;
   left: -100%;
 
