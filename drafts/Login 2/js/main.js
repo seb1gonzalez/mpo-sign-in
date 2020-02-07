@@ -71,7 +71,7 @@
     [Send Email and Pass to PHP for DB Processing]*/
     var input = $('.validate-input .input100');
     $.ajax({
-        url: 'http://localhost/processLogin.php',
+        url: 'processLogin.php',
         type: 'POST',
         data: 'input'+input,
         success: function(data) {
