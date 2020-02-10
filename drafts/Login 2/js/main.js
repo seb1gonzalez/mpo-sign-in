@@ -68,21 +68,21 @@
     
     /*==================================================================
 
-    [Send Email and Pass to PHP for DB Processing]*/
-    var input = $('.validate-input .input100');
-    $.ajax({
-        url: 'processLogin.php',
-        type: 'POST',
-        data: 'input'+input,
-        success: function(data) {
-          //you can add the code to show success message
+    // [Send Email and Pass to PHP for DB Processing]*/
+    // var input = $('.validate-input .input100');
+    // $.ajax({
+    //     url: 'processLogin.php',
+    //     type: 'POST',
+    //     data: 'input'+input,
+    //     success: function(data) {
+    //       console.log("Success")
       
-        },
-        error: function(e) {
-          //called when there is an error
-          //console.log(e.message);
-        }
-    });
+    //     },
+    //     error: function(e) {
+    //       //called when there is an error
+    //       console.log(e.message);
+    //     }
+    // });
 
     /*==================================================================
     [ Show pass ]*/
