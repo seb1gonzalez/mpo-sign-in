@@ -4,7 +4,7 @@
     var input = $('.validate-input .input100');
     JSON.stringify(input);
     $.ajax({
-        url: 'php/processLogin.php',
+        url: 'php/newAccount.php',
         type: 'POST',
         data: input,
         success: function(data) {
