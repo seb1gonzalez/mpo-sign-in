@@ -7,7 +7,6 @@
         url: 'php/processLogin.php',
         type: 'POST',
         data: input,
-        dataType: 'json',
         success: function(data) {
           console.log("Success")
       
