@@ -1,5 +1,6 @@
 
 <?php
     $values=$_POST['input'];
-    echo($values)
+    $array=json_decode($_POST['input']);
+    echo($array)
 ?>
