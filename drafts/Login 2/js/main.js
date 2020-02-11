@@ -66,23 +66,7 @@
         $(thisAlert).removeClass('alert-validate');
     }
     
-    /*==================================================================
 
-    // [Send Email and Pass to PHP for DB Processing]*/
-    // var input = $('.validate-input .input100');
-    // $.ajax({
-    //     url: 'processLogin.php',
-    //     type: 'POST',
-    //     data: 'input'+input,
-    //     success: function(data) {
-    //       console.log("Success")
-      
-    //     },
-    //     error: function(e) {
-    //       //called when there is an error
-    //       console.log(e.message);
-    //     }
-    // });
 
     /*==================================================================
     [ Show pass ]*/
