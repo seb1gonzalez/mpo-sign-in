@@ -1,12 +1,14 @@
 (function ($) {
 
     // [Send New Account data to PHP for DB Processing]
-    var input = $('.validate-input .input100');
+    var input = $(".validate-form").serializeArray()
+    console.log(input);
     JSON.stringify(input);
     $.ajax({
         url: 'php/newAccount.php',
         type: 'POST',
         data: input,
+        dataType: "json",
         success: function(data) {
           console.log("Success")
       

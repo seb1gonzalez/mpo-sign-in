@@ -1,4 +1,3 @@
-
 (function ($) {
     "use strict";
 
@@ -18,10 +17,33 @@
   
   
     /*==================================================================
+    [POST To PHP New Account info]*/
+    $('.new_acc_form').on('submit',function() {
+
+        // [Send New Account data to PHP for DB Processing]
+        var input = $(".validate-form").serializeArray()
+        console.log(input)
+        $.ajax({
+            url: 'php\\newAccount.php',
+            type: 'POST',
+            data: {'input': input},
+            success: function(data) {
+              console.log("Success");
+              alert(data);
+            },
+            error: function(e) {
+              //called when there is an error
+              console.log(e.message);
+            }
+        });
+    
+    
+    });
+
+
+    /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
-
-
     $('.validate-form').on('submit',function(){
         var check = true;
         for(var i=0; i<input.length; i++) {
