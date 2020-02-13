@@ -61,8 +61,9 @@
 
     /*==================================================================
     [ Validate Inputs]*/
-    var input = $('.validate-input .input100');
+    
     $('.validate-form').on('submit',function(){
+        var input = $('.validate-input .input100');
         validate_inputs(input);
     });
 
