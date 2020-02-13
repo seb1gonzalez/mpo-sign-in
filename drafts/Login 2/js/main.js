@@ -19,10 +19,9 @@
     /*==================================================================
     [POST To PHP New Account info]*/
     $('.new_acc_form').on('submit',function() {
-
         // [Send New Account data to PHP for DB Processing]
-        var input = $(".validate-form").serializeArray()
-        console.log(input)
+        var input = $(".new_acc_form").serializeArray();
+        console.log(input);
         $.ajax({
             url: 'php\\newAccount.php',
             type: 'POST',
@@ -33,7 +32,9 @@
             },
             error: function(e) {
               //called when there is an error
+              alert(e);
               console.log(e.message);
+
             }
         });
     
