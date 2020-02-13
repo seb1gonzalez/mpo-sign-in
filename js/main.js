@@ -48,11 +48,9 @@
              data: {'input': input},
              success: function(data) {
                console.log("Success");
-               alert(data);
              },
              error: function(e) {
                //called when there is an error
-               alert(e);
                console.log(e.message);
  
              }
