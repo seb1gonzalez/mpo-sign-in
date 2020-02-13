@@ -50,30 +50,14 @@
     /*Verifies if values have been posted and tries to get them */
     if(isset($_POST['input'])){
         $new_account = get_account_values();   
-        //POD To prepare sql statement in PHP
-        //$sql = $conn->prepare("INSERT INTO  `new_acc_info`(`first_name`, `last_name`, `email`, `pass` ,`organization`)
-        //VALUES (?,?,?,?,?)");
         $new_account = process_array($conn,$new_account);
         $sql = "INSERT INTO new_acc_info(first_name,last_name,email,pass,organization) VALUES($new_account)";
-        // $new_account = array_values($new_account);
-        // $f_name = $new_account[0];
-        // $l_name = $new_account[1];
-        // $email = $new_account[2];
-        // $org = $new_account[3];
-        // $pass = $new_account[4];
-        // $values = implode(",", array_values($new_account));
-        // $values = explode(",", $values);
-
-
-        //Binds variables to sql statement (Password in DB is second to last column)
-       // $sql->bind_param("sssss",$values[0],$values[1],$values[2],$values[4],$values[3]);
-        // $sql->execute();
         mysqli_query($conn,$sql);
+        /*Checks if insertion was succesful */
             if ($conn->query($sql) === TRUE) {
                 debug_to_console("New record created successfully");
             } else {
                 debug_to_console("Failed to insert records");
-                echo $new_account;
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
     }else{

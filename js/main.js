@@ -19,42 +19,51 @@
     /*==================================================================
     [POST To PHP New Account info]*/
     $('.new_acc_form').on('submit',function() {
-        // [Send New Account data to PHP for DB Processing]
-        var input = $(".new_acc_form").serializeArray();
-        console.log(input);
-        $.ajax({
-            url: 'php\\newAccount.php',
-            type: 'POST',
-            data: {'input': input},
-            success: function(data) {
-              console.log("Success");
-              alert(data);
-            },
-            error: function(e) {
-              //called when there is an error
-              alert(e);
-              console.log(e.message);
+        var input = $(".new_acc_form");
 
-            }
+        //If input is validated we post to php
+        if(validate_inputs(input) == true){
+            send_newacc_info(input);
+        }else{
+            console.log("Input not Valid");
+        }
+
+        //Hide validation promts
+        $('.validate-form .input100').each(function(){
+            $(this).focus(function(){
+               hideValidate(this);
+            });
         });
-    
     
     });
 
+    //Function that posts the info with ajax to PHP
+    function send_newacc_info(input){
+         // [Send New Account data to PHP for DB Processing]
+         input = input.serializeArray();
+         console.log(input);
+         $.ajax({
+             url: 'php\\newAccount.php',
+             type: 'POST',
+             data: {'input': input},
+             success: function(data) {
+               console.log("Success");
+               alert(data);
+             },
+             error: function(e) {
+               //called when there is an error
+               alert(e);
+               console.log(e.message);
+ 
+             }
+         });
+    }
 
     /*==================================================================
-    [ Validate ]*/
+    [ Validate Inputs]*/
     var input = $('.validate-input .input100');
     $('.validate-form').on('submit',function(){
-        var check = true;
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
-        }
-
-        return check;
+        validate_inputs(input);
     });
 
 
@@ -64,6 +73,20 @@
         });
     });
 
+    /*Iterate through fields to validate all input*/
+    function validate_inputs(input){
+        var check = true;
+        for(var i=0; i<input.length; i++) {
+            if(validate(input[i]) == false){
+                showValidate(input[i]);
+                check=false;
+            }
+        }
+        return check;
+    }
+
+
+    /*Validate Characters and input completion*/
     function validate (input) {
         if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
             if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
