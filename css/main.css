@@ -41,7 +41,14 @@ body, html {
 	height: 100%;
 	font-family: Poppins-Regular, sans-serif;
 }
-
+body {
+    background-image: url('../images/images/ep_night.jpg') !important;
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover */
+}
 /*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;
@@ -163,20 +170,20 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;  
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  background-image: url('../images/images/ep_night.jpg') !important;
-  
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+
 }
+
 
 .wrap-login100 {
   width: 390px;
@@ -195,8 +202,7 @@ iframe {
 
 /*------------------------------------------------------------------
 [ Form ]*/
-
-.login100-form {
+    .login100-form {
   width: 100%;
 }
 

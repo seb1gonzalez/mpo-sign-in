@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Login V2</title>
@@ -27,7 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<body style="background-image: url('images/images/ep_night.jpg') !important;">
+<body>
 	
 	<div class="limiter">
 		<div class="container-login100">
@@ -41,7 +41,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
+						<input id ="email_login" class="input100" type="text" name="email">
 						<span class="focus-input100" data-placeholder="Email"></span>
 					</div>
 
@@ -56,7 +56,7 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<button class="login100-form-btn" onClick="hardCodeLogin()">
 								Login
 							</button>
 							
@@ -80,7 +80,19 @@
 	
 
 	<div id="dropDownSelect1"></div>
-	
+	<script>
+    // temp solution for MPO meeting
+        function hardCodeLogin() {      
+            let input = document.getElementById("email_login").value;
+          
+            if (input == "MPO") {
+                window.open('http://ctis.utep.edu/MPO_Projects/requestForm/admin.html');
+            } else if (input == "agency") {
+                 window.open('http://ctis.utep.edu/MPO_Projects/requestForm/agency.html');
+            }
+        };
+
+    </script>
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

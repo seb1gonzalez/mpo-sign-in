@@ -1,5 +1,6 @@
 
 <?php
+
     $values=$_POST['input'];
     $array=json_decode($_POST['input']);
     function debug_to_console($data) {
