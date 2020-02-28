@@ -18,7 +18,7 @@
 
 
     /*==================================================================
-    [Verify New Account and Submit to Node JS]*/
+    [Verify New Account and Submit to PHP]*/
     $('.new_acc_form').on('submit', function () {
         var input = $(".new_acc_form");
         send_newacc_info(input);
@@ -28,11 +28,11 @@
 
     //Function that posts the info to MySQL
     function send_newacc_info(input) {
-        // [Send New Account data to Node JS for DB Processing]
+        // [Send New Account data to PHP for DB Processing]
         input = input.serializeArray();
         console.log(input);
         $.ajax({
-            url: 'backend\\newAccount.js',
+            url: 'php\\newAccount.php',
             type: 'POST',
             data: {'input': input},
             success: function(data) {
@@ -47,13 +47,35 @@
 
 
     }
+    /*==================================================================
+    [Send info to PHP for log in processing]*/
+    function send_log_in(input){
+        // [Send New Account data to PHP for DB Processing]
+        input = input.serializeArray();
+        $.ajax({
+            url: 'php\\processLogin.php',
+            type: 'POST',
+            data: {'input': input},
+            success: function(data) {
+              console.log("Success");
+            },
+            error: function(e) {
+              //called when there is an error
+              console.log(e.message);
+
+            }
+    }
 
     /*==================================================================
     [ Validate Inputs]*/
 
-    $('.validate-form').on('submit', function () {
+    $('.log-in-form').on('submit', function () {
         var input = $('.validate-input .input100');
-        validate_inputs(input);
+        if(validate_inputs(input)){
+            //Send info to PHP
+            send_log_in(input);
+        }
+        //If not valid it will automatically show problems
     });
 
 

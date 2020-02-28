@@ -51,6 +51,9 @@
     if(isset($_POST['input'])){
         $new_account = get_account_values();   
         $new_account = process_array($conn,$new_account);
+        /*Must process password hashing here*/
+        $new_account[3] = password_hash($new_account[3],PASSWORD_BCRYPT);
+        //Password is hashed now
         $sql = "INSERT INTO new_acc_info(first_name,last_name,email,pass,organization) VALUES($new_account)";
         mysqli_query($conn,$sql);
         /*Checks if insertion was succesful */
