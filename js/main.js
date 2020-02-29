@@ -1,7 +1,6 @@
 (function ($) {
     "use strict";
 
-    let submit_ok = true;
 
     /*==================================================================
     [ Focus input ]*/
@@ -22,7 +21,6 @@
     $('.new_acc_form').on('submit', function () {
         var input = $(".new_acc_form");
         send_newacc_info(input);
-
     });
 
 
@@ -30,13 +28,13 @@
     function send_newacc_info(input) {
         // [Send New Account data to PHP for DB Processing]
         input = input.serializeArray();
-        console.log(input);
+        console.log(input[4]);
         $.ajax({
             url: 'php\\newAccount.php',
             type: 'POST',
             data: {'input': input},
             success: function(data) {
-              console.log("Success");
+                console.log(data);
             },
             error: function(e) {
               //called when there is an error
@@ -49,6 +47,14 @@
     }
     /*==================================================================
     [Send info to PHP for log in processing]*/
+    $('.log_in_form').on("submit", function (e) {
+        e.preventDefault();
+        var input = $('.validate-input .input100');
+        //Send info to PHP
+        send_log_in(input);
+        //If not valid it will automatically show problems
+    });
+
     function send_log_in(input){
         // [Send New Account data to PHP for DB Processing]
         input = input.serializeArray();
@@ -57,12 +63,11 @@
             type: 'POST',
             data: {'input': input},
             success: function(data) {
-              console.log("Success");
+              console.log(data);
             },
             error: function(e) {
               //called when there is an error
               console.log(e.message);
-
             }
         });
     }
@@ -70,14 +75,6 @@
     /*==================================================================
     [ Validate Inputs]*/
 
-    $('.log-in-form').on('submit', function () {
-        var input = $('.validate-input .input100');
-        if(validate_inputs(input)){
-            //Send info to PHP
-            send_log_in(input);
-        }
-        //If not valid it will automatically show problems
-    });
 
 
     $('.validate-form .input100').each(function () {

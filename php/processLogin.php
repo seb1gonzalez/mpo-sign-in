@@ -15,7 +15,6 @@
     
         echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
     }
-    debug_to_console($array);
 
 
     /*Function that connects to the database, can modify user and password for quick connection*/
@@ -39,16 +38,52 @@
 
     }
 
-    function search_email($email,$conn){
-        $sql = "SELECT pass FROM log_in_users WHERE pass=$email";
+    /**Get password corresponding to email if found */
+    function search_pass($email,$conn){
+        $sql = "SELECT pass FROM new_acc_info WHERE pass='".$email."'";
         $result = mysqli_query($conn,$sql);
-        $pass = mysqli_fetch_assoc($result);
+        if($result==FALSE){
+            return false;
+        } 
+        $pass = mysqli_fetch_assoc($result)["pass"];
         return $pass;
     }
 
+    /**Returns true if password is correct, false if not */
     function verify_password($pass,$hash){
         if(password_verify($pass,$hash)){
             /*Password is valid*/
+            debug_to_console($pass);
+            return true;
         }
+        return false;
     }
+
+    /*Processes array for DB query*/
+    function process_array($conn,$new_account){
+        foreach ($new_account as $key => $value) {
+            $cols[] = $key;
+            $value = implode(",",$value);
+            $value = explode(",",$value);
+            $value = $value[1];
+            $vals[] = mysqli_real_escape_string($conn, $value);
+            }
+            $colvals = "'".implode("', '", $vals)."'";
+            return $colvals;
+    }
+
+
+    /**Process password with query to see if it is correct password*/
+    $conn = connect_to_db();
+    if(isset($_POST['input'])){
+        $log_in = get_account_values();
+        $log_in = process_array($conn,$log_in);
+        $hash = search_pass($log_in[0],$conn);
+        $is_pass_valid = verify_password($log_in[1],$hash);
+        if($is_pass_valid)
+            echo "Password Valid";
+        else
+            echo "Password not Valid";
+    }
+    mysqli_close($conn);
 ?>

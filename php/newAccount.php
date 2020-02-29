@@ -14,10 +14,10 @@
     }
     /*Function that connects to the database, can modify user and password for quick connection*/
     function connect_to_db(){
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $db = "test";
+        $host = "ctis.utep.edu";
+        $username = "ctis";
+        $password = "19691963";
+        $db = "project_request_form";
         // Create connection
         $conn = mysqli_connect($host, $username,$password, $db);
 
@@ -39,11 +39,12 @@
             $cols[] = $key;
             $value = implode(",",$value);
             $value = explode(",",$value);
-            $value = $value[1];
+            $value = $value[1];    
             $vals[] = mysqli_real_escape_string($conn, $value);
-            }
-          $colvals = "'".implode("', '", $vals)."'";
-          return $colvals;
+        }
+        $vals[4] = password_hash($vals[4],PASSWORD_BCRYPT);
+        $colvals = "'".implode("', '", $vals)."'";
+        return $colvals;
     }
 
     $conn = connect_to_db();
@@ -51,10 +52,7 @@
     if(isset($_POST['input'])){
         $new_account = get_account_values();   
         $new_account = process_array($conn,$new_account);
-        /*Must process password hashing here*/
-        $new_account[3] = password_hash($new_account[3],PASSWORD_BCRYPT);
-        //Password is hashed now
-        $sql = "INSERT INTO new_acc_info(first_name,last_name,email,pass,organization) VALUES($new_account)";
+        $sql = "INSERT INTO new_acc_info(first_name,last_name,email,organization,pass) VALUES($new_account)";
         mysqli_query($conn,$sql);
         /*Checks if insertion was succesful */
             if ($conn->query($sql) === TRUE) {
@@ -69,6 +67,6 @@
     
 
    
-
+    mysqli_close($conn);
 
 ?>
