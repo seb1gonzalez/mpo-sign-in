@@ -40,11 +40,12 @@
 
     /**Get password corresponding to email if found */
     function search_pass($email,$conn){
-        $sql = "SELECT pass FROM new_acc_info WHERE pass='".$email."'";
+        $email = mysqli_real_escape_string($conn,$email);
+        $sql = "SELECT pass FROM new_acc_info WHERE email='".$email."'";
         $result = mysqli_query($conn,$sql);
         if($result==FALSE){
             return false;
-        } 
+        }
         $pass = mysqli_fetch_assoc($result)["pass"];
         return $pass;
     }
@@ -53,7 +54,6 @@
     function verify_password($pass,$hash){
         if(password_verify($pass,$hash)){
             /*Password is valid*/
-            debug_to_console($pass);
             return true;
         }
         return false;
@@ -68,7 +68,8 @@
             $value = $value[1];
             $vals[] = mysqli_real_escape_string($conn, $value);
             }
-            $colvals = "'".implode("', '", $vals)."'";
+            $colvals = implode(",", $vals);
+            $colvals = explode(",",$colvals);
             return $colvals;
     }
 
