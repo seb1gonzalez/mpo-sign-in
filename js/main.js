@@ -28,7 +28,6 @@
     function send_newacc_info(input) {
         // [Send New Account data to PHP for DB Processing]
         input = input.serializeArray();
-        console.log(input[4]);
         $.ajax({
             url: 'php\\newAccount.php',
             type: 'POST',
@@ -52,9 +51,15 @@
         var input = $('.validate-input .input100');
         //Send info to PHP
         send_log_in(input);
-        //If not valid it will automatically show problems
     });
 
+    /*Redirect to proper page based on user type*/
+    function redUser(response){
+        if(response == 'Invalid')
+            alert("Password incorrect or user does not exist");
+    }
+
+    //Sends log in info to PHP to validate account and returns response
     function send_log_in(input){
         // [Send New Account data to PHP for DB Processing]
         input = input.serializeArray();
@@ -63,7 +68,7 @@
             type: 'POST',
             data: {'input': input},
             success: function(data) {
-              console.log(data);
+                //Success function not working
             },
             error: function(e) {
               //called when there is an error
