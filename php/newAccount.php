@@ -52,7 +52,7 @@
     if(isset($_POST['input'])){
         $new_account = get_account_values();   
         $new_account = process_array($conn,$new_account);
-        $sql = "INSERT INTO new_acc_info(first_name,last_name,email,organization,pass) VALUES($new_account)";
+        $sql = "INSERT INTO users(first_name,last_name,email,organization,pass) VALUES($new_account)";
         mysqli_query($conn,$sql);
         /*Checks if insertion was succesful */
             if ($conn->query($sql) === TRUE) {

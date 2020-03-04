@@ -41,7 +41,7 @@
     /**Get password corresponding to email if found */
     function search_account($email,$conn){
         $email = mysqli_real_escape_string($conn,$email);
-        $sql = "SELECT pass FROM new_acc_info WHERE email='".$email."'";
+        $sql = "SELECT pass,type_of_user FROM users WHERE email='".$email."'";
         $result = mysqli_query($conn,$sql);
         if($result==FALSE){
             return false;
@@ -75,7 +75,12 @@
 
     /*Function to return to the javascript value to redirect to proper webpage */
     function redirectToAccount($type){
-
+        if($type=="Admin")
+            echo json_encode("Admin");
+        else if($type=="Creator")
+            echo json_encode("Creator");
+        else if($type=="Submitter")
+            echo json_encode("Submitter");
     }
 
     /**Process password with query to see if it is correct password*/
@@ -85,17 +90,13 @@
         $log_in = process_array($conn,$log_in);
         $account = search_account($log_in[0],$conn);
         $hash = $account["pass"];
-        //$type = $account["type"]; //Get account type to take specific action
+        $type = $account["type_of_user"]; //Get account type to take specific action
         $is_pass_valid = verify_password($log_in[1],$hash);
         if($is_pass_valid)
             //If pass is valid we redirect to account type
             redirectToAccount($type);
         else
             echo json_encode("Invalid");
-        /**
-         * Here we would check what account type the person is, to give them a certain access and redirect them to a page.
-         * 
-         */
     }
     mysqli_close($conn);
 ?>

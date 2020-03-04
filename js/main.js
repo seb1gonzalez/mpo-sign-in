@@ -55,11 +55,23 @@
 
     /*Redirect to proper page based on user type*/
     function redUser(response){
+        console.log(response);
+        response = response.split("\"");
         //Response remains with double quotes.
-        if(response.localeCompare("Invalid")==0)
-            alert("Password incorrect or user does not exist");
+        if(response[1].localeCompare("Invalid")==0)
+            console.log("Response was invalid");
+        else if(response[1].localeCompare("Admin")==0)
+            //Redirect to admin page without allowing back
+            window.location.replace("http://www.w3schools.com");
+        else if(response[1].localeCompare("Creator")==0)
+            //Redirect to creator page without allowing back page
+            window.location.replace("http://www.google.com");
+        else if(response[1].localeCompare("Submitter")==0)
+            //Redirect to submitter page without allowing back button
+            window.location.replace("http://www.wikipedia.org");
         else
-            alert("Response not in Format");
+            alert("Something Wrong with input");
+            
     }
 
     //Sends log in info to PHP to validate account and returns response
@@ -83,8 +95,6 @@
 
     /*==================================================================
     [ Validate Inputs]*/
-
-
 
     $('.validate-form .input100').each(function () {
         $(this).focus(function () {
