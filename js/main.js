@@ -55,8 +55,11 @@
 
     /*Redirect to proper page based on user type*/
     function redUser(response){
-        if(response == 'Invalid')
+        //Response remains with double quotes.
+        if(response.localeCompare("Invalid")==0)
             alert("Password incorrect or user does not exist");
+        else
+            alert("Response not in Format");
     }
 
     //Sends log in info to PHP to validate account and returns response
@@ -69,6 +72,7 @@
             data: {'input': input},
             success: function(data) {
                 //Success function not working
+                redUser(data);
             },
             error: function(e) {
               //called when there is an error

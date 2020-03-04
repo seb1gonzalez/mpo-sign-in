@@ -91,7 +91,7 @@
             //If pass is valid we redirect to account type
             redirectToAccount($type);
         else
-            echo "Invalid";
+            echo json_encode("Invalid");
         /**
          * Here we would check what account type the person is, to give them a certain access and redirect them to a page.
          * 
