@@ -26,14 +26,14 @@
 
     /*Redirect to proper page based on user type*/
     function redUser(response){
-        console.log(response);
         response = response.split("\"");
+        console.log(response);
         //Response remains with double quotes.
         if(response[1].localeCompare("Invalid")==0)
             console.log("Response was invalid");
         else if(response[1].localeCompare("Admin")==0)
             //Redirect to admin page without allowing back
-            window.location.replace("..\\..\\management-views\\employee-manager\\employ.html");
+            window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/employee-manager/");
         else if(response[1].localeCompare("Creator")==0)
             //Redirect to creator page without allowing back page
             window.location.replace("http://www.google.com");
