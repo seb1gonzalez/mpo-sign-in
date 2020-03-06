@@ -15,35 +15,6 @@
         })
     })
 
-
-    /*==================================================================
-    [Verify New Account and Submit to PHP]*/
-    $('.new_acc_form').on('submit', function () {
-        var input = $(".new_acc_form");
-        send_newacc_info(input);
-    });
-
-
-    //Function that posts the info to MySQL
-    function send_newacc_info(input) {
-        // [Send New Account data to PHP for DB Processing]
-        input = input.serializeArray();
-        $.ajax({
-            url: 'php\\newAccount.php',
-            type: 'POST',
-            data: {'input': input},
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(e) {
-              //called when there is an error
-              console.log(e.message);
-
-            }
-        });
-
-
-    }
     /*==================================================================
     [Send info to PHP for log in processing]*/
     $('.log_in_form').on("submit", function (e) {
@@ -62,7 +33,7 @@
             console.log("Response was invalid");
         else if(response[1].localeCompare("Admin")==0)
             //Redirect to admin page without allowing back
-            window.location.replace("http://www.w3schools.com");
+            window.location.replace("..\\..\\management-views\\employee-manager\\employ.html");
         else if(response[1].localeCompare("Creator")==0)
             //Redirect to creator page without allowing back page
             window.location.replace("http://www.google.com");

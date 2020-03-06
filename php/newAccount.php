@@ -36,13 +36,10 @@
     /*Processes array for insertion into DB*/
     function process_array($conn,$new_account){
         foreach ($new_account as $key => $value) {
-            $cols[] = $key;
-            $value = implode(",",$value);
-            $value = explode(",",$value);
-            $value = $value[1];    
+            $cols[] = $key;  
             $vals[] = mysqli_real_escape_string($conn, $value);
         }
-        $vals[4] = password_hash($vals[4],PASSWORD_BCRYPT);
+        $vals[5] = password_hash($vals[5],PASSWORD_BCRYPT);
         $colvals = "'".implode("', '", $vals)."'";
         return $colvals;
     }
@@ -52,7 +49,7 @@
     if(isset($_POST['input'])){
         $new_account = get_account_values();   
         $new_account = process_array($conn,$new_account);
-        $sql = "INSERT INTO users(first_name,last_name,email,organization,pass) VALUES($new_account)";
+        $sql = "INSERT INTO users(agency,first_name,last_name,email,type_of_user,pass) VALUES($new_account)";
         mysqli_query($conn,$sql);
         /*Checks if insertion was succesful */
             if ($conn->query($sql) === TRUE) {

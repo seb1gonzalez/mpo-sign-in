@@ -75,12 +75,12 @@
 
     /*Function to return to the javascript value to redirect to proper webpage */
     function redirectToAccount($type){
-        if($type=="Admin")
+        if($type==1)
             echo json_encode("Admin");
-        else if($type=="Creator")
-            echo json_encode("Creator");
-        else if($type=="Submitter")
+        else if($type==2)
             echo json_encode("Submitter");
+        else if($type==3)
+            echo json_encode("Creator");
     }
 
     /**Process password with query to see if it is correct password*/
