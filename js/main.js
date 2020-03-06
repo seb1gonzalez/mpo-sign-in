@@ -54,7 +54,6 @@
             type: 'POST',
             data: {'input': input},
             success: function(data) {
-                //Success function not working
                 redUser(data);
             },
             error: function(e) {
