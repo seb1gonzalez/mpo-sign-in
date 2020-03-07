@@ -33,7 +33,7 @@
             console.log("Response was invalid");
         else if(response[1].localeCompare("Admin")==0)
             //Redirect to admin page without allowing back
-            window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/employee-manager/");
+            window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/sign-in/employeeManager.html");
         else if(response[1].localeCompare("Creator")==0)
             //Redirect to creator page without allowing back page
             window.location.replace("http://www.google.com");
