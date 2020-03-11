@@ -50,7 +50,6 @@
         $new_account = get_account_values();   
         $new_account = process_array($conn,$new_account);
         $sql = "INSERT INTO users(agency,first_name,last_name,email,type_of_user,pass) VALUES($new_account)";
-        mysqli_query($conn,$sql);
         /*Checks if insertion was succesful */
             if ($conn->query($sql) === TRUE) {
                 debug_to_console("New record created successfully");

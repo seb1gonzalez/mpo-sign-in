@@ -36,10 +36,10 @@
             window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/admin-view/");
         else if(response[1].localeCompare("Creator")==0)
             //Redirect to creator page without allowing back page
-            window.location.replace("http://www.google.com");
+            window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/employee-view/");
         else if(response[1].localeCompare("Submitter")==0)
             //Redirect to submitter page without allowing back button
-            window.location.replace("http://www.wikipedia.org");
+            window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/employee-view/");
         else
             alert("Something Wrong with input");
             
