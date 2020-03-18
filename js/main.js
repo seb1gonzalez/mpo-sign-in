@@ -24,20 +24,39 @@
         send_log_in(input);
     });
 
+    /**Set user type in SESSION Variable to allow checking later */
+    function setUserType(response){
+        response = response.split("\"");
+        //Set Session type in php for proper redirecting.
+        $.ajax({
+            url:'php\\setSessionType.php',
+            type: 'POST',
+            data: {'account':response},
+            success:function(data){
+                if(data.localeCompare("Success")){
+                    redUser(response);
+                }else{
+
+                }
+            },
+            error: function(e){
+                console.log(e);
+            }
+        });
+    }
+
     /*Redirect to proper page based on user type*/
     function redUser(response){
-        response = response.split("\"");
-        console.log(response);
         //Response remains with double quotes.
-        if(response[1].localeCompare("Invalid")==0)
+        if(response[response.length-2].localeCompare("Invalid")==0)
             console.log("Response was invalid");
-        else if(response[1].localeCompare("Admin")==0)
+        else if(response[response.length-2].localeCompare("Admin")==0)
             //Redirect to admin page without allowing back
             window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/admin-view/");
-        else if(response[1].localeCompare("Creator")==0)
+        else if(response[response.length-2].localeCompare("Creator")==0)
             //Redirect to creator page without allowing back page
             window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/employee-view/");
-        else if(response[1].localeCompare("Submitter")==0)
+        else if(response[response.length-2].localeCompare("Submitter")==0)
             //Redirect to submitter page without allowing back button
             window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/employee-view/");
         else
@@ -54,7 +73,7 @@
             type: 'POST',
             data: {'input': input},
             success: function(data) {
-                redUser(data);
+                setUserType(data);
             },
             error: function(e) {
               //called when there is an error

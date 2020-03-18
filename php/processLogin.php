@@ -32,7 +32,8 @@
             die("Connection failed: " . $conn->connect_error);
         } 
         else{
-            debug_to_console("Connected successfully");
+            //Connection Successful
+            
         }
         return $conn;
 
@@ -41,7 +42,7 @@
     /**Get password corresponding to email if found */
     function search_account($email,$conn){
         $email = mysqli_real_escape_string($conn,$email);
-        $sql = "SELECT pass,type_of_user FROM users WHERE email='".$email."'";
+        $sql = "SELECT * FROM users WHERE email='".$email."'";
         $result = mysqli_query($conn,$sql);
         if($result==FALSE){
             return false;
@@ -74,13 +75,19 @@
     }
 
     /*Function to return to the javascript value to redirect to proper webpage */
-    function redirectToAccount($type){
-        if($type==1)
-            echo json_encode("Admin");
-        else if($type==2)
-            echo json_encode("Submitter");
-        else if($type==3)
-            echo json_encode("Creator");
+    function redirectToAccount($type,$account){
+        if($type==1){
+            $account[] = "Admin";
+            echo json_encode($account);
+        }
+        else if($type==2){
+            $account[] = "Submitter";
+            echo json_encode($account);
+        }
+        else if($type==3){
+            $account[] = "Creator";
+            echo json_encode($account);
+        }
     }
 
     /**Process password with query to see if it is correct password*/
@@ -91,10 +98,13 @@
         $account = search_account($log_in[0],$conn);
         $hash = $account["pass"];
         $type = $account["type_of_user"]; //Get account type to take specific action
+        $sessionInfo[] = $account["first_name"];
+        $sessionInfo[] = $account["last_name"];
+        $sessionInfo[] = $account["agency"];
         $is_pass_valid = verify_password($log_in[1],$hash);
         if($is_pass_valid)
             //If pass is valid we redirect to account type
-            redirectToAccount($type);
+            redirectToAccount($type, $sessionInfo);
         else
             echo json_encode("Invalid");
     }
