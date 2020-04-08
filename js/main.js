@@ -52,13 +52,13 @@
             console.log("Response was invalid");
         else if(response[response.length-2].localeCompare("Admin")==0)
             //Redirect to admin page without allowing back
-            window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/admin-view/");
+            window.location.replace("http://ctis.utep.edu/MPO_Projects/ProjectRequestForm/management-views/admin-view/");
         else if(response[response.length-2].localeCompare("Creator")==0)
             //Redirect to creator page without allowing back page
-            window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/employee-view/");
+            window.location.replace("http://ctis.utep.edu/MPO_Projects/ProjectRequestForm/management-views/employee-view/");
         else if(response[response.length-2].localeCompare("Submitter")==0)
             //Redirect to submitter page without allowing back button
-            window.location.replace("http://ctis.utep.edu/MPO_Projects/requestForm_Victor/management-views/employee-view/");
+            window.location.replace("http://ctis.utep.edu/MPO_Projects/ProjectRequestForm/management-views/employee-view/");
         else
             alert("Something Wrong with input");
             
